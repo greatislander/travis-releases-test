@@ -1,8 +1,4 @@
 language: php
-branches:
-  only:
-  - master
-  - '/\bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b/'
 php:
 - 7.0
 env:
@@ -22,12 +18,13 @@ install:
 script:
 - yarn run production
 before_deploy:
-- git archive --format=zip --output=/tmp/travis-releases-test-$TRAVIS_TAG.zip
+- git archive --output=travis-releases-test-$TRAVIS_TAG.zip master .
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: G1M7PZYgvowAu+Csx1Pjo3mSv9PVtn2afzN6VRPGTwCkiq1ZRguW3v3KvakGR8iCikogGiHMCIFRpEd9ard2gi3zk+ZQneaL5GPy/i4RZHFq0eBjnWLPOCyDQL+bzUFjnUdmkwYDBI6s5LW6BUrDXCvOJ3GZ4+RBWj5YM3h18fcxC9XnbTkDkAFmLQLZI1ZJxa6ZHh8P89o8Pr6syYwh/U6CtToq0k54sK+jcQN+5W4Abx/kOj65WedquiNQbc95wu8Z/RMGHwV95pHpMFX69ggIsMtmJRrrwHENgDcmDozHAmQJmgUgeHY4U6rygKiFx6Sg7Ix2LKeC+RoG4VL05AtuWiBLNdJ70eI4nD83ifxiSY35nmdsuPza6mYR+iIcmZYw6/ibWy8FGXi5FyKjr0Dcbqaiu0Q2wJn0XJiS9lU+g9G9ix6gBJNWCHQYnMhLjEHVj9QL5rnJnrVaU/cCsNm05EXtppL5Vofs0jaYvTvC6MUWOHwEi/Kim/vJMheOf+0oV7iJerJXb3m4n/kd7HVSY1bSKMwRgEH/5lQFB6ZFur+rTH+Tm7Iqr6oi19+8RCLgt19MlIeSKgKR5UnzD5nuqheRCrISOMOufflOSxYAZkisV5eGgv889gkK7JtlmdbZzk3xvtpvzgk75bPZtx1/PN0yJSsYYc2BBdi0IvA=
-  file: /tmp/travis-releases-test-$TRAVIS_TAG.zip
+  file: travis-releases-test-$TRAVIS_TAG.zip
   on:
     tags: true
     repo: greatislander/travis-releases-test
