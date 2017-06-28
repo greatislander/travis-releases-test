@@ -1,0 +1,4 @@
+assets/ export-ignore
+.travis.yml export-ignore
+webpack.mix.js export-ignore
+yarn.lock export-ignore
