@@ -1,7 +1,4 @@
 language: php
-branches:
-  only:
-  - master
 php:
 - 7.0
 env:
