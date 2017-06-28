@@ -1,4 +1,8 @@
 language: php
+branches:
+  only:
+  - master
+  - '/\bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b/'
 php:
 - 7.0
 env:
@@ -18,7 +22,7 @@ install:
 script:
 - yarn run production
 before_deploy:
-- git archive --format=zip --output=/tmp/travis-releases-test-$TRAVIS_TAG.zip master
+- git archive --format=zip --output=/tmp/travis-releases-test-$TRAVIS_TAG.zip
 deploy:
   provider: releases
   api_key:
