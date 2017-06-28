@@ -20,7 +20,7 @@ script:
 - yarn run production
 before_deploy:
 - composer install --no-dev
-- zip -9 -ry travis-releases-test-$TRAVIS_TAG.zip  -x assets dist/.gitkeep .travis.yml webpack.mix.js yarn.lock $TRAVIS_BUILD_DIR
+- zip -r9 travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_BUILD_DIR -x *.git* assets/**\* node_modules/**\* dist/.gitkeep webpack.mix.js yarn.lock
 deploy:
   provider: releases
   skip_cleanup: true
