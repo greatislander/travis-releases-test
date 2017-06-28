@@ -15,11 +15,12 @@ install:
 - node -v
 - npm install -g yarn
 - yarn
+- composer install
 script:
 - yarn run production
 before_deploy:
-- yarn run production
-- git archive --output=travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_TAG .
+- composer install --no-dev
+- zip -9 -ry -x assets dist/.gitkeep .travis.yml webpack.mix.js yarn.lock travis-releases-test-$TRAVIS_TAG.zip .
 deploy:
   provider: releases
   skip_cleanup: true
