@@ -18,7 +18,7 @@ install:
 script:
 - yarn run production
 before_deploy:
-- git archive --format=zip --output=/tmp/travis-releases-test-$TRAVIS_TAG.zip
+- git archive --format=zip --output=/tmp/travis-releases-test-$TRAVIS_TAG.zip master
 deploy:
   provider: releases
   api_key:
