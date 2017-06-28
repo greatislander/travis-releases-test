@@ -1,0 +1,31 @@
+language: php
+
+branches:
+  only:
+  - master
+
+php:
+  - 7.0
+
+env:
+  - TRAVIS_NODE_VERSION="6"
+  - TRAVIS_NODE_VERSION="7"
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION && nvm use $TRAVIS_NODE_VERSION
+
+install:
+  - node -v
+  - npm install -g yarn
+  - yarn
+
+script:
+  - yarn run lint
+  - yarn run production
