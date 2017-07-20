@@ -6,7 +6,6 @@ php:
 - 7.0
 env:
 - TRAVIS_NODE_VERSION="6"
-- TRAVIS_PROJECT_SLUG="$(basename $TRAVIS_BUILD_DIR)""
 matrix:
   fast_finish: true
 cache:
@@ -22,6 +21,7 @@ install:
 script:
 - yarn run production
 before_deploy:
+- export TRAVIS_PROJECT_SLUG="$(basename $TRAVIS_BUILD_DIR)"
 - composer install --no-dev
 - cd ../
 - zip -9 -ry $TRAVIS_BUILD_DIR/$TRAVIS_PROJECT_SLUG-$TRAVIS_TAG.zip $TRAVIS_PROJECT_SLUG -x *.git* *assets/\* *dist/.gitkeep *node_modules/\* *webpack.mix.js* *yarn.lock*
