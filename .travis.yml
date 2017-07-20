@@ -6,7 +6,6 @@ php:
 - 7.0
 env:
 - TRAVIS_NODE_VERSION="6"
-- TRAVIS_NODE_VERSION="7"
 matrix:
   fast_finish: true
 cache:
@@ -23,7 +22,9 @@ script:
 - yarn run production
 before_deploy:
 - composer install --no-dev
-- cd ../ && zip -9 -ry travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_BUILD_DIR -x *.git* *assets/\* *dist/.gitkeep *node_modules/\* *webpack.mix.js* *yarn.lock*
+- cd ../ && zip -9 -ry /tmp/travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_BUILD_DIR -x *.git* *assets/\* *dist/.gitkeep *node_modules/\* *webpack.mix.js* *yarn.lock*
+- mv /tmp/travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_BUILD_DIR/travis-releases-test-$TRAVIS_TAG.zip
+- cd $TRAVIS_BUILD_DIR
 deploy:
   provider: releases
   skip_cleanup: true
