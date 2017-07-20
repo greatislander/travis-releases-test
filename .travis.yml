@@ -22,7 +22,7 @@ script:
 - yarn run production
 before_deploy:
 - composer install --no-dev
-- cd ../ && zip -9 -ry /tmp/travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_BUILD_DIR -x *.git* *assets/\* *dist/.gitkeep *node_modules/\* *webpack.mix.js* *yarn.lock*
+- zip -9 -ry -b /tmp travis-releases-test-$TRAVIS_TAG.zip . -x *.git* *assets/\* *dist/.gitkeep *node_modules/\* *webpack.mix.js* *yarn.lock*
 - mv /tmp/travis-releases-test-$TRAVIS_TAG.zip $TRAVIS_BUILD_DIR/travis-releases-test-$TRAVIS_TAG.zip
 - cd $TRAVIS_BUILD_DIR
 deploy:
