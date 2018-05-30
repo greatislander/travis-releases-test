@@ -1,4 +1,5 @@
 {
+  "version": null,
   "devDependencies": {
     "laravel-mix": "^1.0.7"
   },
