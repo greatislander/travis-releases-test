@@ -3,7 +3,7 @@
 .gitattributes
 .gitignore
 .travis.yml
-dist/.gitkeep
+assets/src
 node_modules
 webpack.mix.js
 yarn.lock

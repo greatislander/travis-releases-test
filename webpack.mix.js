@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,9 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
- mix.setPublicPath('dist')
-	.sass('assets/style.scss', 'dist/')
- 	.version();
+mix
+  .setPublicPath("assets/dist")
+  .sass("assets/src/style.scss", "assets/dist/")
+  .version();
 
 // Full API
 // mix.js(src, output);
